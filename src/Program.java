@@ -98,7 +98,7 @@ public class Program extends PApplet {
 
     }
 
-    private void checkBombEffect(Player player, int i, int power, int posX, int posY) {
+    private void checkBombEffect( int i, int power, int posX, int posY) {
 
         if (i < power) {
             if (posX + 1 < 18) {
@@ -107,7 +107,7 @@ public class Program extends PApplet {
                     checkPlayer(posX + 1, posY);
                 } else {
                     i++;
-                    checkBombEffect(player, i, power, posX + 1, posY);
+                    checkBombEffect( i, power, posX + 1, posY);
                 }
             }
             if (posX - 1 > 2) {
@@ -116,7 +116,7 @@ public class Program extends PApplet {
                     checkPlayer(posX - 1, posY);
                 } else {
                     i++;
-                    checkBombEffect(player, i, power, posX - 1, posY);
+                    checkBombEffect( i, power, posX - 1, posY);
                 }
             }
             if (posY + 1 < 13) {
@@ -125,7 +125,7 @@ public class Program extends PApplet {
                     checkPlayer(posX, posY + 1);
                 } else {
                     i++;
-                    checkBombEffect(player, i, power, posX, posY + 1);
+                    checkBombEffect(i, power, posX, posY + 1);
                 }
             }
             if (posY - 1 < 2) {
@@ -134,7 +134,7 @@ public class Program extends PApplet {
                     checkPlayer(posX, posY - 1);
                 } else {
                     i++;
-                    checkBombEffect(player, i, power, posX, posY - 1);
+                    checkBombEffect( i, power, posX, posY - 1);
                 }
             }
         }
@@ -147,7 +147,7 @@ public class Program extends PApplet {
         for (Bomb b : bombs) {
             if (b != null)
                 if (b.isExpire(mapArray)) {
-                    checkBombEffect(b.getPlayer(), 0, b.getBombPower(), Math.round(b.getpPosX()) / Constants.BLOCK_SIZE, Math.round(b.getpPosY()) / Constants.BLOCK_SIZE);
+                    checkBombEffect(0, b.getBombPower(), Math.round(b.getpPosX()) / Constants.BLOCK_SIZE, Math.round(b.getpPosY()) / Constants.BLOCK_SIZE);
                     mapArray[Math.round(b.getpPosX()) / Constants.BLOCK_SIZE][Math.round(b.getpPosY()) / Constants.BLOCK_SIZE] = Constants.EMPTY_BLOCK;
                     tempBomb.add(b);
 
